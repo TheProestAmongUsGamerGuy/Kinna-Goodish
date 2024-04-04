@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Proxy Page</title>
+<script>
+// Function to fetch and display content from a target URL
+function fetchAndDisplayContent() {
+  const proxyUrl = 'https://your-proxy-server.com/'; // Your proxy server URL if server-side is implemented
+  const targetUrl = 'https://example.com'; // The URL you want to proxy
+  fetch(proxyUrl + targetUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+    })
+    .then(data => {
+      document.getElementById('content').innerHTML = data;
+    })
+    .catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+</script>
+</head>
+<body onload="fetchAndDisplayContent()">
+<h1>Content Proxy</h1>
+<div id="content">Loading...</div>
+</body>
+</html>
